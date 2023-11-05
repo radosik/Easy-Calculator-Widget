@@ -1,4 +1,5 @@
-const codeHtml = `
+// Svg delete button icon 
+const svgFileDelete = `
     <svg code="delete" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="36" height="36" viewBox="0 0 36 36" fill="none">
         <rect code="delete" x="0.907776" y="0.683868" width="35" height="35" fill="url(#pattern0)" fill-opacity="0.8"/>
         <defs>
@@ -9,10 +10,12 @@ const codeHtml = `
         </defs>
     </svg>`
 
+// Color variables
 const cssVar = {
     mainColor: '#AC3AF2'
 }
 
+// Css styles object
 const StylesCalc = {
     mainContainerClass: {
         position: "absolute",
@@ -144,6 +147,7 @@ const history = {
     childs: []
 }
 
+// DOM
 const objHtml = {
     childs: [{
         tag: 'div',
@@ -348,6 +352,7 @@ const wrapper = document.getElementById('wrapper')
 
 const fragment = document.createDocumentFragment()
 
+// DOM building
 const createRecurse = (objArr, parent) => {
     for (const obj of objArr.childs) {
         const element = document.createElement(obj['tag'])
@@ -379,9 +384,8 @@ createRecurse(objHtml, fragment)
 
 wrapper.appendChild(fragment)
 
-/******* Time */
+// Imports
 const mainContainer = document.querySelector('.main_container')
-// wrapper.innerHTML = codeHtml
 
 const numberButtons = document.querySelectorAll('.number')
 
@@ -390,7 +394,7 @@ const operationButtons = document.querySelectorAll('.operation')
 const equalsButton = document.querySelector('.equals')
 
 const deleteButton = document.querySelector('.delete')
-deleteButton.innerHTML = codeHtml;
+deleteButton.innerHTML = svgFileDelete;
 
 const allClearButton = document.querySelector('.all-clear')
 
@@ -409,11 +413,12 @@ const act = ['/', '*', '+', '-', '%']
 
 const pads = document.querySelector('.pads')
 
-
+// After any symbol added
 const refreshDisplay = (res, arr) => {
     res.textContent = arr.join(' ')
 }
 
+// Percent calculating
 const parsePersent = (arr, curIndex) => {
 
     let valuePersent = arr[curIndex]
@@ -425,6 +430,7 @@ const parsePersent = (arr, curIndex) => {
     return valuePersent
 }
 
+// Equals calculating
 const parseActions = (arr) => {
     const arrFn = [...arr]
     const act = new Map([
@@ -542,11 +548,10 @@ pads.addEventListener('click', (event) => {
 cont = document.querySelector('.main_container');
 let newPosX = 0, newPosY = 0, startPosX = 0, startPosY = 0;
 
-// when the user clicks down on the element
+// Catch mouse moves
 cont.addEventListener('mousedown', function (e) {
     e.preventDefault();
 
-    // get the starting position of the cursor
     startPosX = e.clientX;
     startPosY = e.clientY;
 
@@ -558,6 +563,7 @@ cont.addEventListener('mousedown', function (e) {
 
 });
 
+// Calculator dragability
 function mouseMove(e) {
     // calculate the new position
     newPosX = startPosX - e.clientX;
